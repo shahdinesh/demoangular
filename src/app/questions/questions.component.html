@@ -1,0 +1,56 @@
+<form [formGroup]="registerForm">
+  <label>
+    Category:
+    <select formControlName="category_id" required>
+      <option value="">-- Select --</option>
+      <option *ngFor="let category of categories;" value="{{ category.id }}">{{ category.category }}</option>
+    </select>
+    <div *ngIf="f.category_id.errors?.required">
+      Category is required.
+    </div>
+  </label>
+  <br>
+  <label>
+    Title:
+    <input type="text" formControlName="title" required maxlength="250">
+    <input type="hidden" formControlName="true_index" required>
+    <div *ngIf="f.title.errors?.required">
+      Titile is required.
+    </div>
+    <div *ngIf="f.title.errors?.maxlength">
+      Titile is should be less than 250 character.
+    </div>
+  </label>
+  <br>
+  <br>
+  <div>
+    <button (click)="addOption()" type="button">Add Option</button>
+  </div>
+  <div *ngFor="let option of o.controls; let i = index">
+    <div  [formGroup]="option">
+      <label>{{i + 1}}</label>
+      <label>
+        Answer:
+        <input type="text" formControlName="answer" required>
+        <div *ngIf="option.controls.answer.errors?.required">
+          Answer is required.
+        </div>
+
+      </label>
+      <label>
+        Is Correct:
+        <input type="radio" name="is_true" value="{{ i }}" (change)="changeTrueStatus(i)" formControlName="is_true">
+      </label>
+      <label *ngIf="registerForm.controls.options.controls.length > 1">
+        <input type="button" value="Remove" (click)="removeOption(i)">
+      </label>
+    </div>
+  </div>
+
+    <div *ngIf="f.true_index.errors?.required">
+      Please select any option that is true.
+    </div>
+
+  <button type="submit" [disabled]="registerForm.invalid" *ngIf="!id" (click)="addQuestion()">Submit</button>
+  <button type="submit" [disabled]="registerForm.invalid" *ngIf="id" (click)="updateQuestion()">Update</button>
+</form>

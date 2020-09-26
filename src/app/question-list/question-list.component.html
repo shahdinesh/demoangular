@@ -1,0 +1,20 @@
+<div>
+    <a routerLink="/addQuestions">Add Questions</a>
+</div>
+
+<div *ngFor="let question of questions; let i = index;">
+    <div class="question"><strong>{{ i+1 }}. [{{ question.category.category }}]</strong>&nbsp;{{ question.title }}</div>
+    <div class="answers">
+        <ol>
+            <li *ngFor="let answer of question.answers" [ngClass]="(answer.is_true=='1')?'correct-answer':''">{{ answer.answer }}</li>
+        </ol>
+    </div>
+    <div class="action">
+        <a [routerLink]="['/editQuestions', question.id]">
+            Edit
+        </a>&nbsp;&nbsp;
+        <button (click)="deleteQuestion(question.id)">
+            Delete
+        </button>
+    </div>
+</div>
