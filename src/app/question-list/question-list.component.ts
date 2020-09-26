@@ -22,6 +22,7 @@ export class QuestionListComponent implements OnInit {
   getQuestions() {
     this.questionService.getQuestions().subscribe(
       data => {
+        this.messageService.add(`Successfully listed question.`);
         this.questions = data;
       },
       err => {
@@ -33,6 +34,7 @@ export class QuestionListComponent implements OnInit {
     if(confirm("Are sure you want to delete??")) {
       this.questionService.deleteQuestion(id).subscribe(
         data => {
+          this.messageService.add(`Successfully deleted question.`);
           this.getQuestions();
         },
         err => {

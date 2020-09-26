@@ -73,6 +73,7 @@ export class QuestionsComponent implements OnInit {
     if(this.registerForm.valid) {
       this.questionService.saveQuestion(this.registerForm.value).subscribe(
         data => {
+          this.messageService.add(`Successfully added question.`);
           this.router.navigate(['/questions']);
         },
         err => {
@@ -85,6 +86,7 @@ export class QuestionsComponent implements OnInit {
     if(this.registerForm.valid) {
       this.questionService.updateQuestion(this.registerForm.value, this.id).subscribe(
         data => {
+          this.messageService.add(`Successfully updated question.`);
           this.router.navigate(['/questions']);
         },
         err => {
