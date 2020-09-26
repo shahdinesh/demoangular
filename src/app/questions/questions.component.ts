@@ -13,6 +13,7 @@ export class QuestionsComponent implements OnInit {
   registerForm: FormGroup;
   categories: any;
   id = this.route.snapshot.paramMap.get('id');
+  submited = false;
   constructor(
     private formBuilder: FormBuilder, 
     private questionService: QuestionService, 
@@ -65,11 +66,9 @@ export class QuestionsComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
   get o() { return this.f.options as FormArray; }
-  // get category_id() { return this.registerForm.get('category_id'); }
-  // get title() { return this.registerForm.get('title'); }
-  // get true_index() { return this.registerForm.get('true_index'); }
 
   addQuestion() {
+    this.submited = true;
     if(this.registerForm.valid) {
       this.questionService.saveQuestion(this.registerForm.value).subscribe(
         data => {
@@ -83,6 +82,7 @@ export class QuestionsComponent implements OnInit {
       console.log(this.registerForm.value);
   }
   updateQuestion() {
+    this.submited = true;
     if(this.registerForm.valid) {
       this.questionService.updateQuestion(this.registerForm.value, this.id).subscribe(
         data => {

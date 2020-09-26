@@ -1,20 +1,36 @@
-<div>
-    <a routerLink="/addQuestions">Add Questions</a>
-</div>
-
-<div *ngFor="let question of questions; let i = index;">
-    <div class="question"><strong>{{ i+1 }}. [{{ question.category.category }}]</strong>&nbsp;{{ question.title }}</div>
-    <div class="answers">
-        <ol>
-            <li *ngFor="let answer of question.answers" [ngClass]="(answer.is_true=='1')?'correct-answer':''">{{ answer.answer }}</li>
-        </ol>
-    </div>
-    <div class="action">
-        <a [routerLink]="['/editQuestions', question.id]">
-            Edit
-        </a>&nbsp;&nbsp;
-        <button (click)="deleteQuestion(question.id)">
-            Delete
-        </button>
+<div class="row">
+    <div class="col-sm-12">
+        <a class="btn btn-info" routerLink="/addQuestions">Add Questions</a>
+        
+        <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>S.N.</th>
+                <th>Category</th>
+                <th>Question</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let question of questions; let i = index;">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ question.category.category }}</td>
+                    <td>
+                        {{ question.title }}
+                        <ol>
+                            <li *ngFor="let answer of question.answers" [ngClass]="(answer.is_true=='1')?'correct-answer':''">{{ answer.answer }}</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-sm" [routerLink]="['/editQuestions', question.id]">
+                            Edit
+                        </a>&nbsp;&nbsp;
+                        <button class="btn btn-danger btn-sm" (click)="deleteQuestion(question.id)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
