@@ -109,6 +109,11 @@ export class QuestionsComponent implements OnInit {
     }));
   }
   removeOption(i) {
+    if (this.registerForm.controls.true_index.value == i) {
+      this.registerForm.patchValue({
+        true_index: ''
+      });
+    }
     this.o.removeAt(i);
   }
 
