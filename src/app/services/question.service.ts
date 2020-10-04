@@ -37,4 +37,8 @@ export class QuestionService {
   deleteQuestion(id): Observable<any> {
     return this.http.delete(AppSettings.API_URL + `deleteQuestion/${id}`, httpOptions);
   }
+
+  getQuizQuestion(): Observable<any> {
+    return this.http.get(AppSettings.API_URL + 'getQuizQuestion', httpOptions);
+  }
 }

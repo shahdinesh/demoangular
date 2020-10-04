@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { QuestionsComponent } from './questions/questions.component';
 import { QuestionListComponent } from './question-list/question-list.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { QuestionListComponent } from './question-list/question-list.component';
     MessagesComponent,
     DashboardComponent,
     QuestionsComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,

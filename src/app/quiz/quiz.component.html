@@ -1,0 +1,26 @@
+<div *ngIf="!showResult">
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="rogressPercentage" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+          {{ currentIndex }}/{{ questionCount }}
+        </div>
+    </div>
+    <div *ngIf="currnetQuestion">
+        <form [formGroup]="currentForm">
+            <p>
+                [{{ currnetQuestion.category.category }}]
+                <strong>{{ currnetQuestion.title }}</strong>
+            </p>
+    
+            <input type="hidden" formControlName="question_id" value="{{ currnetQuestion.id }}">
+            <div class="radio" *ngFor="let option of currnetQuestion.answers">
+                <label><input type="radio" formControlName="user_answer" value="{{ option.id }}">{{ option.answer }}</label>
+            </div>
+        </form>
+        <button type="button" (click)="nextQuestion()" class="btn btn-primary">{{ btnText }}</button>
+    </div>
+</div>
+
+<div *ngIf="showResult">
+    Your Result: {{ correctAnswerCount }}/{{ questionCount }}.
+</div>
+

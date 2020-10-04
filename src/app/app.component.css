@@ -1,3 +1,7 @@
 div.navbar-collapse {
     float: right;
 }
+
+.container {
+    padding-top: 10px;
+}

@@ -5,6 +5,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { QuestionListComponent } from './question-list/question-list.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -14,7 +15,9 @@ const routes: Routes = [
 
   { path: 'questions', component: QuestionListComponent },
   { path: 'addQuestions', component: QuestionsComponent },
-  { path: 'editQuestions/:id', component: QuestionsComponent }
+  { path: 'editQuestions/:id', component: QuestionsComponent },
+
+  { path: 'quiz', component: QuizComponent },
 ];
 
 @NgModule({
