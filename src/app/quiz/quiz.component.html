@@ -1,6 +1,6 @@
 <div *ngIf="!showResult">
     <div class="progress">
-        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="rogressPercentage" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ progressPercentage }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': progressPercentage + '%'}">
           {{ currentIndex }}/{{ questionCount }}
         </div>
     </div>
