@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppSettings } from './appSettings';
 
@@ -19,10 +19,16 @@ export class QuestionService {
     return this.http.get(AppSettings.API_URL + 'getCategories', httpOptions);
   }
 
-  getQuestions(id = null): Observable<any> {
+  getQuestions(id = null, searchParam = null): Observable<any> {
     var url = AppSettings.API_URL + 'getQuestions';
     if (id !== null)
       url += '/' + id;
+    else if (searchParam !== null)
+      url += '?' + (new HttpParams()
+          .set('category_id', searchParam.category_id)
+          .set('title', searchParam.title)
+          .set('page', searchParam.pageno)
+        ).toString();
     return this.http.get(url, httpOptions);
   }
 
