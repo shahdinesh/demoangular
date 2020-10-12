@@ -51,7 +51,7 @@
         </table>
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-              <li class="page-item" *ngFor="let item of pages" ><a class="page-link" (click)="search(item)" href="javascript:void(0);" >{{ item  }}</a></li>
+              <li class="page-item" *ngFor="let item of pages"  [ngClass]="(item==currentPage)?'active':''"><a class="page-link" (click)="search(item)" href="javascript:void(0);" >{{ item  }}</a></li>
             </ul>
         </nav>
     </div>

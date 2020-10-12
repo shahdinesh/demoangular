@@ -13,6 +13,8 @@ export class QuestionListComponent implements OnInit {
   categories: any;
   questions: any;
   pages = [];
+  lastPage: number = 0;
+  currentPage: number = 0;
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -26,7 +28,9 @@ export class QuestionListComponent implements OnInit {
       title: new FormControl(''),
     });
     this.getQuestions();
-
+    setTimeout(() => {
+      this.paginate(1);
+    }, 500);
     this.questionService.getCategories().subscribe(
       data => {
         this.categories = data;
@@ -41,7 +45,7 @@ export class QuestionListComponent implements OnInit {
       data => {
         this.messageService.add(`Successfully listed question.`);
         this.questions = data.data;
-        this.createRange(data.last_page);
+        this.lastPage = data.last_page;
       },
       err => {
       }
@@ -63,19 +67,52 @@ export class QuestionListComponent implements OnInit {
   }
 
   search(pageno = null) {
-console.log(pageno);
-    this.getQuestions({
-      category_id: this.searchForm.value.category_id,
-      title: this.searchForm.value.title,
-      pageno: pageno
-    });
-  }
-  
-  createRange(number) {
-    this.pages = [];
-    for(var i = 1; i <= number; i++){
-       this.pages.push(i);
+    if(pageno != this.currentPage) {
+      this.getQuestions({
+        category_id: this.searchForm.value.category_id,
+        title: this.searchForm.value.title,
+        pageno: pageno
+      });
+      setTimeout(() => {
+        this.paginate(pageno);
+      }, 500);
     }
   }
 
+  paginate(current) {
+    this.pages = [];
+    if (current == null)
+      current = 1;
+    this.currentPage = current;
+
+    // if(current > 1)
+    //     console.log('prev');
+
+    if (current < 5){
+        for(var i=1; i<current; ++i)
+          this.pages.push(i);
+    }
+    else {
+        this.pages.push(1);
+        this.pages.push('...');
+        for(var i=current-2; i<current; ++i)
+          this.pages.push(i);
+    }
+
+    this.pages.push(current);
+
+    if (current > this.lastPage-4) {
+        for(var j=current+1; j<=this.lastPage; ++j)
+            this.pages.push(j);
+    }
+    else {
+        for(var j=current+1; j<current+3; ++j)
+            this.pages.push(j);
+        this.pages.push('...');
+        this.pages.push(this.lastPage);
+    }
+
+    // if (current < this.lastPage)
+    //     console.log('next');
+  }
 }
