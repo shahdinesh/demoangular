@@ -1,0 +1,94 @@
+<form [formGroup]="customerForm" enctype='multipart/form-data'>
+    <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" formControlName="name" required maxlength="250" id="name" class="form-control">
+            <div *ngIf="submited && f.name.errors?.required" class="text-danger">
+                Name is required.
+            </div>
+            <div *ngIf="submited && f.name.errors?.maxlength" class="text-danger">
+                Name is should be less than 250 character.
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="designation" class="col-sm-2 col-form-label">Designation</label>
+        <div class="col-sm-4">
+            <input type="text" formControlName="designation" required maxlength="250" id="designation" class="form-control">
+            <div *ngIf="submited && f.designation.errors?.required" class="text-danger">
+                Designation is required.
+            </div>
+            <div *ngIf="submited && f.designation.errors?.maxlength" class="text-danger">
+                Designation is should be less than 250 character.
+            </div>
+        </div>
+        <label for="address" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-4">
+            <input type="text" formControlName="address" required maxlength="250" id="address" class="form-control">
+            <div *ngIf="submited && f.address.errors?.required" class="text-danger">
+                Address is required.
+            </div>
+            <div *ngIf="submited && f.address.errors?.maxlength" class="text-danger">
+                Address is should be less than 250 character.
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="phone" class="col-sm-2 col-form-label">Phone No.</label>
+        <div class="col-sm-4">
+            <input type="text" formControlName="phone" required maxlength="250" id="phone" class="form-control">
+            <div *ngIf="submited && f.phone.errors?.required" class="text-danger">
+                Phone is required.
+            </div>
+            <div *ngIf="submited && f.phone.errors?.maxlength" class="text-danger">
+                Phone is should be less than 250 character.
+            </div>
+        </div>
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-4">
+            <input type="text" formControlName="email" required maxlength="250" id="email" class="form-control">
+            <div *ngIf="submited && f.email.errors?.required" class="text-danger">
+                Email is required.
+            </div>
+            <div *ngIf="submited && f.email.errors?.maxlength" class="text-danger">
+                Email is should be less than 250 character.
+            </div>
+            <div *ngIf="submited && f.email.errors?.email" class="text-danger">
+                Value must be valid mail.
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-4">
+            <input type="password" formControlName="password" required maxlength="250" id="password" class="form-control">
+            <div *ngIf="submited && f.password.errors?.required" class="text-danger">
+                Password is required.
+            </div>
+        </div>
+        <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
+        <div class="col-sm-4">
+            <input type="password" formControlName="confirmPassword" required maxlength="250" id="confirmPassword" class="form-control">
+            <div *ngIf="submited && f.confirmPassword.errors?.required" class="text-danger">
+                Confirm Password is required.
+            </div>
+            <div *ngIf="submited && f.confirmPassword.errors?.confirmedValidator" class="text-danger">
+                Password and Confirm Password did not match.
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="profile" class="col-sm-2 col-form-label">Profile</label>
+        <div class="col-sm-4">
+            <input type="file" formControlName="profile" required maxlength="100" id="profile" class="form-control" accept="image/*" (change)="readImage($event)">
+            <div *ngIf="submited && f.profile.errors?.required" class="text-danger">
+                Profile is required.
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <img [src]="profile" height="200">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success btn-sm" [disabled]="submited && customerForm.invalid" *ngIf="!id" (click)="addCustomer()">Add</button>
+    <button type="submit" class="btn btn-success btn-sm" [disabled]="submited && customerForm.invalid" *ngIf="id" (click)="updateCustomer()">Update</button>
+</form>

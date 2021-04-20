@@ -1,0 +1,29 @@
+.card {
+    width: 23%;
+    float: left;
+    margin: 0px 3px 2px;
+}
+
+.title {
+    width: 100%;
+    padding: 2px;
+    background-color: aqua;
+}
+
+.image-container {
+    width: 45%;
+    float: left;
+}
+
+.image-container>img {
+    width: 100px;
+}
+
+.info {
+    width: 55%;
+    float: left;
+}
+
+.info>p {
+    margin-bottom: auto;
+}

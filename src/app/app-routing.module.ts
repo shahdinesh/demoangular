@@ -6,6 +6,8 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { CustomersComponent } from './customers/customers.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -18,6 +20,9 @@ const routes: Routes = [
   { path: 'editQuestions/:id', component: QuestionsComponent },
 
   { path: 'quiz', component: QuizComponent },
+
+  { path: 'customers', component: CustomersComponent },
+  { path: 'addCustomer', component: AddCustomerComponent },
 ];
 
 @NgModule({
