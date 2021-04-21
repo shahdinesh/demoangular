@@ -14,7 +14,7 @@
     <div class="form-group row">
         <label for="designation" class="col-sm-2 col-form-label">Designation</label>
         <div class="col-sm-4">
-            <input type="text" formControlName="designation" required maxlength="250" id="designation" class="form-control">
+            <input type="text" formControlName="designation" required maxlength="250" id="designation" class="form-control" max="50">
             <div *ngIf="submited && f.designation.errors?.required" class="text-danger">
                 Designation is required.
             </div>
@@ -24,7 +24,7 @@
         </div>
         <label for="address" class="col-sm-2 col-form-label">Address</label>
         <div class="col-sm-4">
-            <input type="text" formControlName="address" required maxlength="250" id="address" class="form-control">
+            <input type="text" formControlName="address" required maxlength="250" id="address" class="form-control" max="250">
             <div *ngIf="submited && f.address.errors?.required" class="text-danger">
                 Address is required.
             </div>
